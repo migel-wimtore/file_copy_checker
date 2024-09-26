@@ -23,7 +23,7 @@
 
 def check_file_exists(file_path: str) -> bool:
 
-    print('\n Checking for existence of ' + name_of_file_to_be_copied)
+    print('\n Checking for existence of "' + file_path + "'")
 
     does_file_exist: bool = True
 
@@ -67,8 +67,7 @@ def get_file_size(file_path: str) -> int:
 
         print('\n ERROR')
         exit()
-
-
+        
 
 def get_checksum_for_file(file_path: str) -> str:
 
@@ -131,7 +130,7 @@ def compare_checksums(original_file_checksum, copied_file_checksum) -> bool:
 
     print('\n Comparing checksums')
 
-    if original_file_checksum == copied_file_checksum:
+    if copied_file_checksum == original_file_checksum:
 
         return True
     
@@ -148,6 +147,15 @@ def main():
     # if something undesirable happens) we can
     # forgo having those checks below (as we had it earlier),
     # but that doesn't have to be final of course.
+
+    # NOTE: below you see we use the plus symbol to combine
+    # two variables and pass them into the functions as one.
+    # In this case it handily makes one string consisting of
+    # the path and file name, which makes our absolute file path.
+
+    # NOTE: this program flow assumes we are 
+    # checksumming and copying a single file,
+    # not a directory.
 
     check_file_exists(source_location + name_of_file_to_be_copied)
 
@@ -167,9 +175,9 @@ def main():
 
 
 # NOTE: Here we define some global variables.
-# Perhaps ultimately these would be arguments
+# Ultimately some of these could be arguments
 # passed in to our program, but for now
-# we would have to manually define them.
+# we have to manually assign them.
 # Additionaly i create some other variables,
 # without initialising them with any values.
 # Their values will be assigned
@@ -183,17 +191,13 @@ original_file_checksum: str
 copied_file_checksum: str
 
 
+# NOTE: this will start our program running
+# by calling the 'main()' method defined above.
+
 # NOTE: i think we are supposed to use
 # some Python convention here and name
 # our main function '__main' or something, idk...
 
-# NOTE: this will start our program running
-# by calling the 'main()' method defined above.
-
-# NOTE: this program skeleton assumes we are 
-# checksumming and copying a single file,
-# not a directory.
-
-
 # Run.
 main()
+
