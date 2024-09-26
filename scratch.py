@@ -91,7 +91,7 @@ def get_checksum_for_file(file_path: str) -> str:
 
 # NOTE: this could be three seperate methods or
 # grouped as here, as they share a common purpose.
-def check_destination_location_is_ready(size_of_file_of_interest: int, destination_path: str, ) -> bool:
+def check_destination_is_ready(size_of_file_of_interest: int, destination_directory_path: str, ) -> bool:
 
     print('\n Checking destination is mounted')
 
@@ -114,7 +114,7 @@ def check_destination_location_is_ready(size_of_file_of_interest: int, destinati
         exit()
     
 
-def copy_file(original_file_path: str, destination_location: str) -> bool:
+def copy_file(source_file_path: str, destination_directory_path: str) -> bool:
 
     print('\n Copying file...')
 
@@ -146,7 +146,17 @@ def compare_checksums(original, copied) -> bool:
 
 def main():
 
-    # NOTE: as we have our breaking conditions
+    # NOTE: Here we define some variables.
+    # Ultimately these could be arguments
+    # passed in to our program, but for now
+    # we have to manually assign them.
+        
+    name_of_file_to_be_copied: str = 'name_of_file_of_interest'
+    source_path: str = '/my/source/'
+    destination_path: str = '/my/destination/'
+
+    
+    # NOTE: as we have our breaking conditionsname_of_file_to_be_copied
     # in the methods themselves (i.e. exiting there
     # if something undesirable happens) we can
     # forgo having those checks below (as we had it earlier),
@@ -157,31 +167,21 @@ def main():
     # In these cases it handily makes a single string consisting of
     # the path and file name, which makes our absolute file path.
 
-    check_file_exists(source_location + name_of_file_to_be_copied)
+    check_file_exists(source_path + name_of_file_to_be_copied)
 
-    check_if_file_is_zero_bytes(source_location + name_of_file_to_be_copied)
+    check_if_file_is_zero_bytes(source_path + name_of_file_to_be_copied)
 
-    file_size = get_file_size(source_location + name_of_file_to_be_copied)
+    file_size = get_file_size(source_path + name_of_file_to_be_copied)
 
-    check_destination_location_is_ready(file_size, destination_location)
+    check_destination_is_ready(file_size, destination_path)
 
-    original_file_checksum = get_checksum_for_file(source_location + name_of_file_to_be_copied)
+    original_file_checksum = get_checksum_for_file(source_path + name_of_file_to_be_copied)
 
-    copy_file(source_location + name_of_file_to_be_copied, destination_location)
+    copy_file(source_path + name_of_file_to_be_copied, destination_path)
 
-    copied_file_checksum = get_checksum_for_file(destination_location + name_of_file_to_be_copied)
+    copied_file_checksum = get_checksum_for_file(destination_path + name_of_file_to_be_copied)
 
     compare_checksums(original_file_checksum, copied_file_checksum)
-
-
-# NOTE: Here we define some global variables.
-# Ultimately these could be arguments
-# passed in to our program, but for now
-# we have to manually assign them.
-    
-name_of_file_to_be_copied: str = 'name_of_file_of_interest'
-source_location: str = '/my/source/'
-destination_location: str = '/my/destination/'
 
 
 # NOTE: this will start our program running
