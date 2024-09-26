@@ -175,20 +175,13 @@ def main():
 
 
 # NOTE: Here we define some global variables.
-# Ultimately some of these could be arguments
+# Ultimately these could be arguments
 # passed in to our program, but for now
 # we have to manually assign them.
-# Additionaly i create some other variables,
-# without initialising them with any values.
-# Their values will be assigned
-# as the program runs its course.
     
 name_of_file_to_be_copied: str = 'name_of_file_of_interest'
 source_location: str = '/my/source/'
 destination_location: str = '/my/destination/'
-file_size: int
-original_file_checksum: str
-copied_file_checksum: str
 
 
 # NOTE: this will start our program running
