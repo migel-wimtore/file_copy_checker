@@ -71,8 +71,7 @@ def get_file_size(file_path: str) -> int:
 
         print('\n ERROR')
         exit()
-
-
+        
 
 def get_checksum_for_file(file_path: str) -> str:
 
