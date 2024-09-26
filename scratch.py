@@ -115,7 +115,7 @@ def check_destination_location_is_ready(size_of_file_of_interest: int, destinati
         exit()
     
 
-def copy_file(file_name: str, destination_location: str) -> bool:
+def copy_file(original_file_path: str, destination_location: str) -> bool:
 
     print('\n Copying file...')
 
@@ -154,8 +154,8 @@ def main():
     # but that doesn't have to be final of course.
 
     # NOTE: below you see we use the plus symbol to combine
-    # two variables and pass them into the functions as one.
-    # In this case it handily makes a single string consisting of
+    # two variables and pass them into some of the functions as one.
+    # In these cases it handily makes a single string consisting of
     # the path and file name, which makes our absolute file path.
 
     check_file_exists(source_location + name_of_file_to_be_copied)
@@ -168,7 +168,7 @@ def main():
 
     original_file_checksum = get_checksum_for_file(source_location + name_of_file_to_be_copied)
 
-    copy_file(name_of_file_to_be_copied, destination_location)
+    copy_file(source_location + name_of_file_to_be_copied, destination_location)
 
     copied_file_checksum = get_checksum_for_file(destination_location + name_of_file_to_be_copied)
 
