@@ -61,11 +61,11 @@ def get_file_size(file_path: str) -> int:
 
     print('\n Determing size of file')
 
-    file_size: int = 999
+    size: int = 999
 
-    if len(file_size) > 0:
+    if len(size) > 0:
 
-        return file_size
+        return size
     
     else:
 
@@ -130,11 +130,11 @@ def copy_file(original_file_path: str, destination_location: str) -> bool:
         exit()
 
 
-def compare_checksums(original_file_checksum, copied_file_checksum) -> bool:
+def compare_checksums(original, copied) -> bool:
 
-    print('\n Comparing checksums')
+    print('\n Comparing checksums...')
 
-    if copied_file_checksum == original_file_checksum:
+    if copied == original:
 
         return True
     
