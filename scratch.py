@@ -170,7 +170,7 @@ def main():
 # passed in to our program, but for now
 # we would have to either manually define them
 # or simply create them (and not assign values to them),
-# so that their values can be assigned here
+# so that their values can be assigned
 # as the program runs its course.
 original_file_name: str = 'name_of_file_of_interest'
 copied_file_name: str
