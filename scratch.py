@@ -15,6 +15,10 @@
 # and is in no way intended to be final.
 # Anything is game for changing!
 
+# NOTE: this program flow assumes we are 
+# checksumming and copying a single file,
+# not a directory.
+
 # NOTE: there is a way we could make the return statements,
 # that are contingent on 'if'/'else', be more terse
 # by using ternary but here i use the (more verbose) way
@@ -67,7 +71,8 @@ def get_file_size(file_path: str) -> int:
 
         print('\n ERROR')
         exit()
-        
+
+
 
 def get_checksum_for_file(file_path: str) -> str:
 
@@ -150,12 +155,8 @@ def main():
 
     # NOTE: below you see we use the plus symbol to combine
     # two variables and pass them into the functions as one.
-    # In this case it handily makes one string consisting of
+    # In this case it handily makes a single string consisting of
     # the path and file name, which makes our absolute file path.
-
-    # NOTE: this program flow assumes we are 
-    # checksumming and copying a single file,
-    # not a directory.
 
     check_file_exists(source_location + name_of_file_to_be_copied)
 
@@ -163,7 +164,7 @@ def main():
 
     file_size = get_file_size(source_location + name_of_file_to_be_copied)
 
-    check_destination_location_is_ready(destination_location, file_size)
+    check_destination_location_is_ready(file_size, destination_location)
 
     original_file_checksum = get_checksum_for_file(source_location + name_of_file_to_be_copied)
 
@@ -200,4 +201,3 @@ copied_file_checksum: str
 
 # Run.
 main()
-
