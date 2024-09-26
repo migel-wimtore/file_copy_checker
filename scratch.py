@@ -15,14 +15,15 @@
 # and is in no way intended to be final.
 # Anything is game for changing!
 
-# NOTE: there is a way we could make the return statements
-# that are contingent on 'if'/'else' be more terse
-# by using ternary, but this (more verbose) way
-# is more clear i.e. good for illustrative purposes.
+# NOTE: there is a way we could make the return statements,
+# that are contingent on 'if'/'else', be more terse
+# by using ternary but here i use the (more verbose) way
+# which is more clear i.e. good for illustrative purposes.
 
-def check_file_existence(file_of_interest: str):
 
-    print('\n Checking for existence of "%s"', file_of_interest)
+def check_file_exists(file_path: str) -> bool:
+
+    print('\n Checking for existence of ' + name_of_file_to_be_copied)
 
     does_file_exist: bool = True
 
@@ -36,13 +37,13 @@ def check_file_existence(file_of_interest: str):
         exit()
     
 
-def check_if_file_is_zero_bytes(file_of_interest: str):
+def check_if_file_is_zero_bytes(file_path: str) -> bool:
             
     print('\n Checking file length')
 
     file_length = 999
 
-    if file_length.length > 0:
+    if len(file_length) > 0:
 
         return True
     
@@ -52,29 +53,13 @@ def check_if_file_is_zero_bytes(file_of_interest: str):
         exit()
 
 
-def get_checksum_for_file(file_name: str, file_location: str):
-
-    print('\n Creating checksum for copied file')
-
-    checksum = 999
-
-    if checksum:
-
-        return checksum
-    
-    else:
-
-        print('\n ERROR')
-        exit()
-    
-
-def get_file_size(file_of_interest: str, file_location: str):
+def get_file_size(file_path: str) -> int:
 
     print('\n Determing size of file')
 
     file_size: int = 999
 
-    if file_size:
+    if len(file_size) > 0:
 
         return file_size
     
@@ -84,9 +69,26 @@ def get_file_size(file_of_interest: str, file_location: str):
         exit()
 
 
+
+def get_checksum_for_file(file_path: str) -> str:
+
+    print('\n Creating checksum for copied file')
+
+    checksum = '999'
+
+    if checksum:
+
+        return checksum
+    
+    else:
+
+        print('\n ERROR')
+        exit()    
+
+
 # NOTE: this could be three seperate methods or
 # grouped as here, as they share a common purpose.
-def check_destination_location_is_ready(destination_path: str, size_of_file_of_interest: int):
+def check_destination_location_is_ready(size_of_file_of_interest: int, destination_path: str, ) -> bool:
 
     print('\n Checking destination is mounted')
 
@@ -109,17 +111,15 @@ def check_destination_location_is_ready(destination_path: str, size_of_file_of_i
         exit()
     
 
-def copy_file(file_of_interest: str, destination_location: str):
+def copy_file(file_name: str, destination_location: str) -> bool:
 
-    print('\n Copying file')
+    print('\n Copying file...')
 
     was_file_copied = True
 
-    copied_file = 'path to/name of new file'
+    if (was_file_copied):
 
-    if (copied_file):
-
-        return copied_file
+        return True
     
     else: 
         
@@ -127,7 +127,7 @@ def copy_file(file_of_interest: str, destination_location: str):
         exit()
 
 
-def compare_checksums(original_file_checksum, copied_file_checksum):
+def compare_checksums(original_file_checksum, copied_file_checksum) -> bool:
 
     print('\n Comparing checksums')
 
@@ -146,44 +146,54 @@ def main():
     # NOTE: as we have our breaking conditions
     # in the methods themselves (i.e. exiting there
     # if something undesirable happens) we can
-    # forgo having those checks below (as in my demo),
+    # forgo having those checks below (as we had it earlier),
     # but that doesn't have to be final of course.
 
-    check_file_existence(original_file_name)
+    check_file_exists(source_location + name_of_file_to_be_copied)
 
-    check_if_file_is_zero_bytes(original_file_name)
+    check_if_file_is_zero_bytes(source_location + name_of_file_to_be_copied)
 
-    original_file_checksum = get_checksum_for_file(original_file_name)
-
-    file_size = get_file_size(original_file_name)
+    file_size = get_file_size(source_location + name_of_file_to_be_copied)
 
     check_destination_location_is_ready(destination_location, file_size)
 
-    copied_file = copy_file(original_file_name, destination_location)
+    original_file_checksum = get_checksum_for_file(source_location + name_of_file_to_be_copied)
 
-    copied_file_checksum = get_checksum_for_file(copied_file, destination_location)
+    copy_file(name_of_file_to_be_copied, destination_location)
+
+    copied_file_checksum = get_checksum_for_file(destination_location + name_of_file_to_be_copied)
 
     compare_checksums(original_file_checksum, copied_file_checksum)
+
 
 # NOTE: Here we define some global variables.
 # Perhaps ultimately these would be arguments
 # passed in to our program, but for now
-# we would have to either manually define them
-# or simply create them (and not assign values to them),
-# so that their values can be assigned
+# we would have to manually define them.
+# Additionaly i create some other variables,
+# without initialising them with any values.
+# Their values will be assigned
 # as the program runs its course.
-original_file_name: str = 'name_of_file_of_interest'
-copied_file_name: str
+    
+name_of_file_to_be_copied: str = 'name_of_file_of_interest'
+source_location: str = '/my/source/'
+destination_location: str = '/my/destination/'
+file_size: int
 original_file_checksum: str
 copied_file_checksum: str
-file_size: int
-destination_location: str
 
-# Call our main function.
+
 # NOTE: i think we are supposed to use
 # some Python convention here and name
 # our main function '__main' or something, idk...
 
 # NOTE: this will start our program running
 # by calling the 'main()' method defined above.
+
+# NOTE: this program skeleton assumes we are 
+# checksumming and copying a single file,
+# not a directory.
+
+
+# Run.
 main()
