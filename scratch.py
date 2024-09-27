@@ -156,7 +156,7 @@ def main():
     destination_path: str = '/my/destination/'
 
     
-    # NOTE: as we have our breaking conditionsname_of_file_to_be_copied
+    # NOTE: as we have our breaking conditions
     # in the methods themselves (i.e. exiting there
     # if something undesirable happens) we can
     # forgo having those checks below (as we had it earlier),
