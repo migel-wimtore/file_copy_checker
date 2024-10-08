@@ -24,6 +24,33 @@
 # by using ternary but here i use the (more verbose) way
 # which is more clear i.e. good for illustrative purposes.
 
+#SUZY EDITS, you'd never guess shes got no clue whats shes doing#
+import os
+import sys
+from pathlib import Path
+
+def check_file_exists() 
+    my_file = Path("/path/to/file")
+    #identify file or directory
+
+print ("Checking for the exsistence of" my_file)
+
+if my_file.exists( ):
+    # file or directory exists
+    print("True")
+    else print ("False")
+
+def file_is_zero_bytes()
+    print ("Checking File Size")
+
+    file_size = sys.getsizeof(my_file)
+      while file_size > 0
+        if file_size = 0
+            continue
+        print("File size:", file_size, "bytes")
+        
+##END OF SUZY EDITS, see you all next month!##
+
 
 def check_file_exists(file_path: str) -> bool:
 
